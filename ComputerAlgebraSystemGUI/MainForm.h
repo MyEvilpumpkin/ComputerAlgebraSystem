@@ -2188,13 +2188,37 @@ namespace ComputerAlgebraSystemGUI {
 			sfd->RestoreDirectory = true;
 			sfd->FileName = "История вычислений.txt";
 			sfd->DefaultExt = "txt";
-			sfd->Filter = "Текстовые документы (*.txt)|*.txt";
+			sfd->Filter = "Текстовые документы (*.txt)|*.txt|HTML документы (*.html)|*.html";
 			if (sfd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 				try {
 					Stream^ stream = sfd->OpenFile();
 					StreamWriter^ sw = gcnew StreamWriter(stream);
-					for (size_t i = 0; i < HISTORY.size(); i++)
-						sw->Write(msclr::interop::marshal_as<String^>(HISTORY[i].module) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].firstOperand) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].secondOperand) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].result) + "\r\n");
+					if (sfd->FilterIndex == 1) {
+						sw->Write("История вычислений\r\n");
+						for (size_t i = 0; i < HISTORY.size(); i++)
+							sw->Write(msclr::interop::marshal_as<String^>(HISTORY[i].module) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].firstOperand) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].secondOperand) + " | " + msclr::interop::marshal_as<String^>(HISTORY[i].result) + "\r\n");
+					}
+					else {
+						sw->Write("<html><meta charset=\"utf-8\">\r\n");
+						sw->Write("\t<h1>История вычислений</h1>\r\n");
+						sw->Write("\t<table border = \"1\" width = \"100%\" cellspacing = \"0\" cellpadding = \"3\" style = \"word-wrap: break-word; table-layout: fixed\">\r\n");
+						sw->Write("\t\t<tr>\r\n");
+						sw->Write("\t\t\t<td width = \"25%\" align = \"center\"><b>Модуль</b></td>\r\n");
+						sw->Write("\t\t\t<td width = \"25%\" align = \"center\"><b>Первый операнд</b></td>\r\n");
+						sw->Write("\t\t\t<td width = \"25%\" align = \"center\"><b>Второй операнд</b></td>\r\n");
+						sw->Write("\t\t\t<td width = \"25%\" align = \"center\"><b>Результат</b></td>\r\n");
+						sw->Write("\t\t</tr>\r\n");
+						for (size_t i = 0; i < HISTORY.size(); i++) {
+							sw->Write("\t\t<tr>\r\n");
+							sw->Write("\t\t\t<td>" + msclr::interop::marshal_as<String^>(HISTORY[i].module) + "</td>\r\n");
+							sw->Write("\t\t\t<td>" + msclr::interop::marshal_as<String^>(HISTORY[i].firstOperand) + "</td>\r\n");
+							sw->Write("\t\t\t<td>" + msclr::interop::marshal_as<String^>(HISTORY[i].secondOperand) + "</td>\r\n");
+							sw->Write("\t\t\t<td>" + msclr::interop::marshal_as<String^>(HISTORY[i].result) + "</td>\r\n");
+							sw->Write("\t\t</tr>\r\n");
+						}
+						sw->Write("\t</table>\r\n");
+						sw->Write("</html>");
+					}
 					sw->Close();
 					this->toolStripStatusLabel1->Text = "История вычислений успешно записана в файл";
 					this->toolStripStatusLabel1->BackColor = System::Drawing::Color::SkyBlue;
