@@ -382,7 +382,7 @@ namespace ComputerAlgebraSystemGUI {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(717, 42);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"История";
+			this->label2->Text = L"История вычислений";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
 			// checkBox1
