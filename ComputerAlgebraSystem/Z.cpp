@@ -1,5 +1,5 @@
 #include "Z.h"
-#include "ZRecognizer.h"
+#include "ZParser.h"
 #include "Exceptions.h"
 #include "TemplateOperations.h"
 
@@ -8,7 +8,7 @@ Z::Z() : number(), sign(true) {
 }
 
 Z::Z(const std::string str) : Z() {
-	ZRecognizer recognizer(str);
+	ZParser recognizer(str);
 	bool status = recognizer.GetStatus();
 	if (status) {
 		std::string tempStr = recognizer.GetPreparedString();

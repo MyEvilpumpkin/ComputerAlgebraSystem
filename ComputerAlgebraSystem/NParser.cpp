@@ -1,6 +1,6 @@
-#include "NRecognizer.h"
+#include "NParser.h"
 
-bool NRecognizer::_n() {
+bool NParser::_n() {
 	bool isCorrect = true;
 	isCorrect = _num();
 	if (str[pos] != '\0')
@@ -8,7 +8,7 @@ bool NRecognizer::_n() {
 	return isCorrect;
 }
 
-bool NRecognizer::_num() {
+bool NParser::_num() {
 	bool isCorrect = true;
 	if (_first_digit())
 		isCorrect = _other_digit();
@@ -17,7 +17,7 @@ bool NRecognizer::_num() {
 	return isCorrect;
 }
 
-bool NRecognizer::_first_digit() {
+bool NParser::_first_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '1' && str[pos] <= '9')
 		pos++;
@@ -26,14 +26,14 @@ bool NRecognizer::_first_digit() {
 	return isCorrect;
 }
 
-bool NRecognizer::_other_digit() {
+bool NParser::_other_digit() {
 	bool isCorrect = true;
 	if (_digit())
 		_other_digit();
 	return isCorrect;
 }
 
-bool NRecognizer::_digit() {
+bool NParser::_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '0' && str[pos] <= '9')
 		pos++;

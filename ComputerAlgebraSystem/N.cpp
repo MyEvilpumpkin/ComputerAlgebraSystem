@@ -1,5 +1,5 @@
 #include "N.h"
-#include "NRecognizer.h"
+#include "NParser.h"
 #include "Exceptions.h"
 #include "TemplateOperations.h"
 
@@ -8,7 +8,7 @@ N::N() : digits(nullptr), size((size_t)0) {
 }
 
 N::N(const std::string str) : N() {
-	NRecognizer recognizer(str);
+	NParser recognizer(str);
 	bool status = recognizer.GetStatus();
 	if (status) {
 		std::string tempStr = recognizer.GetPreparedString();

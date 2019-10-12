@@ -45,31 +45,16 @@
     <ClInclude Include="N.h">
       <Filter>Файлы заголовков\N</Filter>
     </ClInclude>
-    <ClInclude Include="NRecognizer.h">
-      <Filter>Файлы заголовков\N</Filter>
-    </ClInclude>
     <ClInclude Include="P.h">
-      <Filter>Файлы заголовков\P</Filter>
-    </ClInclude>
-    <ClInclude Include="PRecognizer.h">
       <Filter>Файлы заголовков\P</Filter>
     </ClInclude>
     <ClInclude Include="Q.h">
       <Filter>Файлы заголовков\Q</Filter>
     </ClInclude>
-    <ClInclude Include="QRecognizer.h">
-      <Filter>Файлы заголовков\Q</Filter>
-    </ClInclude>
     <ClInclude Include="Z.h">
       <Filter>Файлы заголовков\Z</Filter>
     </ClInclude>
-    <ClInclude Include="ZRecognizer.h">
-      <Filter>Файлы заголовков\Z</Filter>
-    </ClInclude>
     <ClInclude Include="Exceptions.h">
-      <Filter>Файлы заголовков\Additions</Filter>
-    </ClInclude>
-    <ClInclude Include="Recognizer.h">
       <Filter>Файлы заголовков\Additions</Filter>
     </ClInclude>
     <ClInclude Include="SpecialType.h">
@@ -77,6 +62,21 @@
     </ClInclude>
     <ClInclude Include="TemplateOperations.h">
       <Filter>Файлы заголовков\Additions</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Файлы заголовков\Additions</Filter>
+    </ClInclude>
+    <ClInclude Include="NParser.h">
+      <Filter>Файлы заголовков\N</Filter>
+    </ClInclude>
+    <ClInclude Include="PParser.h">
+      <Filter>Файлы заголовков\P</Filter>
+    </ClInclude>
+    <ClInclude Include="QParser.h">
+      <Filter>Файлы заголовков\Q</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParser.h">
+      <Filter>Файлы заголовков\Z</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,25 +86,25 @@
     <ClCompile Include="N.cpp">
       <Filter>Исходные файлы\N</Filter>
     </ClCompile>
-    <ClCompile Include="NRecognizer.cpp">
-      <Filter>Исходные файлы\N</Filter>
-    </ClCompile>
     <ClCompile Include="P.cpp">
-      <Filter>Исходные файлы\P</Filter>
-    </ClCompile>
-    <ClCompile Include="PRecognizer.cpp">
       <Filter>Исходные файлы\P</Filter>
     </ClCompile>
     <ClCompile Include="Q.cpp">
       <Filter>Исходные файлы\Q</Filter>
     </ClCompile>
-    <ClCompile Include="QRecognizer.cpp">
-      <Filter>Исходные файлы\Q</Filter>
-    </ClCompile>
     <ClCompile Include="Z.cpp">
       <Filter>Исходные файлы\Z</Filter>
     </ClCompile>
-    <ClCompile Include="ZRecognizer.cpp">
+    <ClCompile Include="NParser.cpp">
+      <Filter>Исходные файлы\N</Filter>
+    </ClCompile>
+    <ClCompile Include="PParser.cpp">
+      <Filter>Исходные файлы\P</Filter>
+    </ClCompile>
+    <ClCompile Include="QParser.cpp">
+      <Filter>Исходные файлы\Q</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParser.cpp">
       <Filter>Исходные файлы\Z</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,6 @@
-#include "QRecognizer.h"
+#include "QParser.h"
 
-bool QRecognizer::_q() {
+bool QParser::_q() {
 	bool isCorrect = true;
 	if (str[pos] == '+' || str[pos] == '-')
 		pos++;
@@ -10,7 +10,7 @@ bool QRecognizer::_q() {
 	return isCorrect;
 }
 
-bool QRecognizer::_coef() {
+bool QParser::_coef() {
 	bool isCorrect = true;
 	if (str[pos] == '(') {
 		pos++;
@@ -41,7 +41,7 @@ bool QRecognizer::_coef() {
 	return isCorrect;
 }
 
-bool QRecognizer::_num() {
+bool QParser::_num() {
 	bool isCorrect = true;
 	if (_first_digit())
 		isCorrect = _other_digit();
@@ -50,7 +50,7 @@ bool QRecognizer::_num() {
 	return isCorrect;
 }
 
-bool QRecognizer::_first_digit() {
+bool QParser::_first_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '1' && str[pos] <= '9')
 		pos++;
@@ -59,14 +59,14 @@ bool QRecognizer::_first_digit() {
 	return isCorrect;
 }
 
-bool QRecognizer::_other_digit() {
+bool QParser::_other_digit() {
 	bool isCorrect = true;
 	if (_digit())
 		_other_digit();
 	return isCorrect;
 }
 
-bool QRecognizer::_digit() {
+bool QParser::_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '0' && str[pos] <= '9')
 		pos++;

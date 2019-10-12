@@ -99,7 +99,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>N.obj;NRecognizer.obj;Z.obj;ZRecognizer.obj;Q.obj;QRecognizer.obj;P.obj;PRecognizer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>N.obj;NParser.obj;Z.obj;ZParser.obj;Q.obj;QParser.obj;P.obj;PParser.obj</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>N.obj;NRecognizer.obj;Z.obj;ZRecognizer.obj;Q.obj;QRecognizer.obj;P.obj;PRecognizer.obj</AdditionalDependencies>
+      <AdditionalDependencies>N.obj;NParser.obj;Z.obj;ZParser.obj;Q.obj;QParser.obj;P.obj;PParser.obj</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
@@ -129,7 +129,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>N.obj;NRecognizer.obj;Z.obj;ZRecognizer.obj;Q.obj;QRecognizer.obj;P.obj;PRecognizer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>N.obj;NParser.obj;Z.obj;ZParser.obj;Q.obj;QParser.obj;P.obj;PParser.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
@@ -143,7 +143,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>N.obj;NRecognizer.obj;Z.obj;ZRecognizer.obj;Q.obj;QRecognizer.obj;P.obj;PRecognizer.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>N.obj;NParser.obj;Z.obj;ZParser.obj;Q.obj;QParser.obj;P.obj;PParser.obj;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>

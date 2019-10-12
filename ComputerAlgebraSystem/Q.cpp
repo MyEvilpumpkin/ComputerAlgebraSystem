@@ -1,5 +1,5 @@
 #include "Q.h"
-#include "QRecognizer.h"
+#include "QParser.h"
 #include "Exceptions.h"
 #include "TemplateOperations.h"
 
@@ -8,7 +8,7 @@ Q::Q() : numerator(), denominator() {
 }
 
 Q::Q(const std::string str) : Q() {
-	QRecognizer recognizer(str);
+	QParser recognizer(str);
 	bool status = recognizer.GetStatus();
 	if (status) {
 		std::string tempStr = recognizer.GetPreparedString();

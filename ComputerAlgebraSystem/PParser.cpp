@@ -1,6 +1,6 @@
-#include "PRecognizer.h"
+#include "PParser.h"
 
-bool PRecognizer::_polyn() {
+bool PParser::_polyn() {
 	bool isCorrect = true;
 	if (isCorrect)
 		isCorrect = _first_part();
@@ -9,7 +9,7 @@ bool PRecognizer::_polyn() {
 	return isCorrect;
 }
 
-bool PRecognizer::_first_part() {
+bool PParser::_first_part() {
 	bool isCorrect = true;
 	if (_sign_or_nothing())
 		isCorrect = _coef();
@@ -18,13 +18,13 @@ bool PRecognizer::_first_part() {
 	return isCorrect;
 }
 
-bool PRecognizer::_sign_or_nothing() {
+bool PParser::_sign_or_nothing() {
 	bool isCorrect = true;
 	_sign();
 	return isCorrect;
 }
 
-bool PRecognizer::_sign() {
+bool PParser::_sign() {
 	bool isCorrect = true;
 	if (str[pos] == '+' || str[pos] == '-')
 		pos++;
@@ -33,7 +33,7 @@ bool PRecognizer::_sign() {
 	return isCorrect;
 }
 
-bool PRecognizer::_coef() {
+bool PParser::_coef() {
 	bool isCorrect = true;
 	if (str[pos] == '(') {
 		pos++;
@@ -87,7 +87,7 @@ bool PRecognizer::_coef() {
 	return isCorrect;
 }
 
-bool PRecognizer::_num() {
+bool PParser::_num() {
 	bool isCorrect = true;
 	if (_first_digit())
 		isCorrect = _other_digit();
@@ -96,7 +96,7 @@ bool PRecognizer::_num() {
 	return isCorrect;
 }
 
-bool PRecognizer::_first_digit() {
+bool PParser::_first_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '1' && str[pos] <= '9')
 		pos++;
@@ -105,14 +105,14 @@ bool PRecognizer::_first_digit() {
 	return isCorrect;
 }
 
-bool PRecognizer::_other_digit() {
+bool PParser::_other_digit() {
 	bool isCorrect = true;
 	if (_digit())
 		_other_digit();
 	return isCorrect;
 }
 
-bool PRecognizer::_digit() {
+bool PParser::_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '0' && str[pos] <= '9')
 		pos++;
@@ -121,7 +121,7 @@ bool PRecognizer::_digit() {
 	return isCorrect;
 }
 
-bool PRecognizer::_mul() {
+bool PParser::_mul() {
 	bool isCorrect = true;
 	if (str[pos] == '*')
 		pos++;
@@ -130,7 +130,7 @@ bool PRecognizer::_mul() {
 	return isCorrect;
 }
 
-bool PRecognizer::_x() {
+bool PParser::_x() {
 	bool isCorrect = true;
 	if (str[pos] == 'x')
 		pos++;
@@ -139,7 +139,7 @@ bool PRecognizer::_x() {
 	return isCorrect;
 }
 
-bool PRecognizer::_power() {
+bool PParser::_power() {
 	bool isCorrect = true;
 	if (str[pos] == '^') {
 		pos++;
@@ -148,7 +148,7 @@ bool PRecognizer::_power() {
 	return isCorrect;
 }
 
-bool PRecognizer::_other_part() {
+bool PParser::_other_part() {
 	bool isCorrect = true;
 	if (_sign()) {
 		isCorrect = _coef();

@@ -1,5 +1,5 @@
 #include "P.h"
-#include "PRecognizer.h"
+#include "PParser.h"
 #include "Exceptions.h"
 #include "TemplateOperations.h"
 
@@ -8,7 +8,7 @@ P::P() : coefficients(nullptr), power(0) {
 }
 
 P::P(const std::string str) : P() {
-	PRecognizer recognizer(str);
+	PParser recognizer(str);
 	bool status = recognizer.GetStatus();
 	if (status) {
 		struct Part {

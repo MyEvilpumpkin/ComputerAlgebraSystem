@@ -1,6 +1,6 @@
-#include "ZRecognizer.h"
+#include "ZParser.h"
 
-bool ZRecognizer::_z() {
+bool ZParser::_z() {
 	bool isCorrect = true;
 	if (str[pos] == '+' || str[pos] == '-')
 		pos++;
@@ -10,7 +10,7 @@ bool ZRecognizer::_z() {
 	return isCorrect;
 }
 
-bool ZRecognizer::_num() {
+bool ZParser::_num() {
 	bool isCorrect = true;
 	if (_first_digit())
 		isCorrect = _other_digit();
@@ -19,7 +19,7 @@ bool ZRecognizer::_num() {
 	return isCorrect;
 }
 
-bool ZRecognizer::_first_digit() {
+bool ZParser::_first_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '1' && str[pos] <= '9')
 		pos++;
@@ -28,14 +28,14 @@ bool ZRecognizer::_first_digit() {
 	return isCorrect;
 }
 
-bool ZRecognizer::_other_digit() {
+bool ZParser::_other_digit() {
 	bool isCorrect = true;
 	if (_digit())
 		_other_digit();
 	return isCorrect;
 }
 
-bool ZRecognizer::_digit() {
+bool ZParser::_digit() {
 	bool isCorrect = true;
 	if (str[pos] >= '0' && str[pos] <= '9')
 		pos++;
