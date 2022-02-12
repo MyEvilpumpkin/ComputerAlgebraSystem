@@ -3,126 +3,77 @@
 #include "Exceptions.h"
 #include "TemplateOperations.h"
 
-N::N() : digits(nullptr), size((size_t)0) {
+N::N() {
 
 }
 
 N::N(const std::string str) : N() {
-	NParser recognizer(str);
-	bool status = recognizer.GetStatus();
-	if (status) {
-		std::string tempStr = recognizer.GetPreparedString();
-		int pos = 0;
-		while (tempStr[pos] != '\0') {
-			renew<digit>(digits, size, size + 1);
-			digits[size++] = tempStr[pos] - '0';
-			pos++;
-		}
-		for (size_t i = 0; i < (size / 2); i++) {
-			digit temp = digits[i];
-			digits[i] = digits[size - 1 - i];
-			digits[size - 1 - i] = temp;
-		}
+	NParser parser(str);
+	if (parser.GetStatus()) {
+		std::string tempStr = parser.GetPreparedString();
+		for (auto it = tempStr.rbegin(); it != tempStr.rend(); ++it)
+			digits.push_back(*it - '0');
 	}
 	else
 		throw IncorrectString();
 }
 
 N::N(const N& n) : N() {
-	if (this != &n) {
-		if (n.size) {
-			size = n.size;
-			digits = new digit[size];
-			memcpy(digits, n.digits, size * sizeof(digit));
-		}
-	}
+	digits = n.digits;
 }
 
 N::N(N&& n) noexcept : N() {
-	if (this != &n) {
-		size = n.size;
-		n.size = 0;
-		digits = n.digits;
-		n.digits = nullptr;
-	}
+	digits = std::move(n.digits);
 }
 
 N::~N() {
-	delete[] digits;
+	
 }
 
 N& N::operator=(const N& n) {
-	if (this != &n) {
-		delete[] digits;
-		digits = nullptr;
-		size = 0;
-		if (n.size) {
-			size = n.size;
-			digits = new digit[size];
-			memcpy(digits, n.digits, size * sizeof(digit));
-		}
-	}
+	if (this != &n)
+		digits = n.digits;
 	return *this;
 }
 
 N& N::operator=(N&& n) noexcept {
-	if (this != &n) {
-		delete[] digits;
-		size = 0;
-		size = n.size;
-		n.size = 0;
-		digits = n.digits;
-		n.digits = nullptr;
-	}
+	if (this != &n)
+		digits = std::move(n.digits);
 	return *this;
 }
 
 void N::SetZero() {
-	delete[] digits;
-	digits = nullptr;
-	digits = new digit[1];
-	digits[0] = 0;
-	size = 1;
+	digits = { 0 };
 }
 
 void N::SetOne() {
-	delete[] digits;
-	digits = nullptr;
-	digits = new digit[1];
-	digits[0] = 1;
-	size = 1;
+	digits = { 1 };
 }
 
 bool N::IsZero() const {
-	return (size == 1 && digits[0] == 0);
+	return (digits.size() == 1 && digits[0] == 0);
 }
 
 bool N::IsOne() const {
-	return (size == 1 && digits[0] == 1);
+	return (digits.size() == 1 && digits[0] == 1);
 }
 
 std::string N::ToString() const {
 	std::string str;
-	for (int i = (int)size - 1; i >= 0; i--)
-		str += (digits[i] + '0');
+	for (auto it = digits.rbegin(); it != digits.rend(); ++it)
+		str += (*it + '0');
 	return str;
 }
 
 void N::Normalize() {
-	if (size > 1) {
-		int i;
-		bool flag = false;
-		for (i = (int)size - 1; i >= 0 && !flag; i--)
-			flag = digits[i];
-		renew<digit>(digits, size, (size_t)i + (size_t)2);
-		size = (size_t)i + (size_t)2;
-	}
+	for (auto it = digits.rbegin(); it != digits.rend() && !*it; ++it)
+		digits.pop_back();
 }
 
 unsigned int N::ToUInt() {
 	unsigned int num = 0;
-	for (int i = (int)size - 1; i >= 0; i--)
-		num = num * 10 + digits[i];
+	for (auto it = digits.rbegin(); it != digits.rend(); ++it)
+		num = num * 10 + *it;
 	return num;
 }
 
@@ -133,7 +84,7 @@ int COM_NN_D(const N& n1, const N& n2) {
 	else if (n1.size < n2.size) // Если второе число больше первого
 		return 1;
 	else {
-		for (int i = (int)n1.size - 1; i >= 0; i--) // Цикл до последней числа
+		for (int i = (int)n1.size - 1; i >= 0; i--) // Цикл до последней цифры первого числа
 			if (n1.digits[i] > n2.digits[i]) // Если цифра первого числа больше цифры второго
 				return 2;
 			else if (n1.digits[i] < n2.digits[i]) // Наоборот

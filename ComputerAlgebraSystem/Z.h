@@ -1,34 +1,30 @@
 #pragma once
 #include "SpecialType.h"
 #include "N.h"
-#include <string>
 
-// Описание натурального числа
 class Z : public SpecialType {
-	// Поля
-	N number;  // Натуральное число
-	bool sign; // Знак числа (false - отрицательное, true - положительное)
+
+	N number;
+	bool sign;
+
 public:
-	// Конструкторы и деструкторы
-	Z();                  // Конструктор по умолчанию
-	Z(const std::string); // Конструктор преобразования std::string в Z
-	Z(const Z&);          // Конструктор копирования
-	Z(Z&&) noexcept;      // Конструктор копирования с переносом
-	~Z();                 // Деструктор по умолчанию
 
-	// Перегрузка операторов
-	Z& operator = (const Z&);     // Перегрузка оператора присваивания
-	Z& operator = (Z&&) noexcept; // Перегрузка оператора присваивания с переносом
+	Z();
+	Z(const std::string);
+	Z(const Z&);
+	Z(Z&&) noexcept;
+	~Z();
 
-	// Переопределение функций базового класса
-	void SetZero() override;               // Установка нуля
-	void SetOne() override;                // Установка единицы
-	bool IsZero() const override;          // Проверка на равенство с нулём
-	bool IsOne() const override;           // Проверка на равенство с единицей
-	std::string ToString() const override; // Преобразование Z в std::string
-	void Normalize() override;             // Нормализация числа
+	Z& operator=(const Z&);
+	Z& operator=(Z&&) noexcept;
 
-	// Дружественные функции
+	void SetZero() override;
+	void SetOne() override;
+	bool IsZero() const override;
+	bool IsOne() const override;
+	std::string ToString() const override;
+	void Normalize() override;
+
 	friend N ABS_Z_N(const Z&);            // Z-1
 	friend int POZ_Z_D(const Z&);          // Z-2
 	friend Z MUL_ZM_Z(const Z&);           // Z-3
@@ -40,12 +36,11 @@ public:
 	friend Z DIV_ZN_Z(const Z&, const N&); // Z-9
 	friend Z MOD_ZN_Z(const Z&, const N&); // Z-10
 
-	// Дружественные классы
 	friend class Q;
 	friend class P;
+
 };
 
-// Модули
 N ABS_Z_N(const Z&);            // Z-1
 int POZ_Z_D(const Z&);          // Z-2
 Z MUL_ZM_Z(const Z&);           // Z-3

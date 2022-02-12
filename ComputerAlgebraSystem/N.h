@@ -1,39 +1,51 @@
 #pragma once
 #include "SpecialType.h"
-#include <string>
+#include <vector>
 
-// Определение типа digit
-typedef char digit;
+using digit = char;
 
-// Описание натурального числа
 class N : public SpecialType {
-	// Поля
-	digit* digits; // Указатель на младший разряд числа
-	size_t size;   // Количество разрядов в числе
+
+	std::vector<digit> digits;
+
 public:
-	// Конструкторы и деструкторы
-	N();                   // Конструктор по умолчанию
-	N(const std::string);  // Конструктор преобразования std::string в N
-	N(const N&);           // Конструктор копирования
-	N(N&&) noexcept;       // Конструктор копирования с переносом
-	~N();                  // Деструктор по умолчанию
 
-	// Перегрузка операторов
-	N& operator = (const N&);     // Перегрузка оператора присваивания
-	N& operator = (N&&) noexcept; // Перегрузка оператора присваивания с переносом
+	N();
+	N(const std::string);
+	N(const N&);
+	N(N&&) noexcept;
+	~N();
 
-	// Переопределение функций базового класса
-	void SetZero() override;               // Установка нуля
-	void SetOne() override;                // Установка единицы
-	bool IsZero() const override;          // Проверка на равенство с нулём
-	bool IsOne() const override;           // Проверка на равенство с единицей
-	std::string ToString() const override; // Преобразование N в std::string
-	void Normalize() override;             // Нормализация числа
+	N& operator=(const N&);
+	N& operator=(N&&) noexcept; 
 
-	//Вспомогательные функции
-	unsigned int ToUInt(); // Преобразование N в unsigned int
+	N& operator+() const;
+	N& operator++();
+	N operator++(int);
+	N& operator--();
+	N operator--(int);
+	N operator+(const N&) const;
+	N& operator+=(const N&);
+	N operator-(const N&) const;
+	N& operator-=(const N&);
+	N operator*(const N&) const;
+	N& operator*=(const N&);
+	N operator/(const N&) const;
+	N& operator/=(const N&);
+	N operator%(const N&) const;
+	N& operator%=(const N&);
+	digit& operator[](const int) const;
+	auto operator<=>(const N&) const;
 
-	// Дружественные функции
+	void SetZero() override;
+	void SetOne() override;
+	bool IsZero() const override;
+	bool IsOne() const override;
+	std::string ToString() const override;
+	void Normalize() override;
+
+	unsigned int ToUInt();
+
 	friend int COM_NN_D(const N&, const N&);                    // N-1
 	friend bool NZER_N_B(const N&);                             // N-2
 	friend N ADD_1N_N(const N&);                                // N-3
@@ -49,13 +61,12 @@ public:
 	friend N GCF_NN_N(const N&, const N&);                      // N-13
 	friend N LCM_NN_N(const N&, const N&);                      // N-14
 
-	// Дружественные классы
 	friend class Z;
 	friend class Q;
 	friend class P;
+
 };
 
-// Модули
 int COM_NN_D(const N&, const N&);                    // N-1
 bool NZER_N_B(const N&);                             // N-2
 N ADD_1N_N(const N&);                                // N-3

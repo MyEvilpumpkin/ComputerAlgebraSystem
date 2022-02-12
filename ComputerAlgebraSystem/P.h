@@ -1,34 +1,30 @@
 #pragma once
 #include "SpecialType.h"
 #include "Q.h"
-#include <string>
 
-// Описание натурального числа
 class P : public SpecialType {
-	// Поля
-	Q* coefficients; // Указатель на адрес свободного коэффициента, представленного в виде рационального числа
-	size_t power;    // Степень многочлена
+
+	Q* coefficients;
+	size_t power;
+
 public:
-	// Конструкторы и деструкторы
-	P();                  // Конструктор по умолчанию
-	P(const std::string); // Конструктор преобразования std::string в P
-	P(const P&);          // Конструктор копирования
-	P(P&&) noexcept;      // Конструктор копирования с переносом
-	~P();                 // Деструктор по умолчанию
 
-	// Перегрузка операторов
-	P& operator = (const P&);     // Перегрузка оператора присваивания
-	P& operator = (P&&) noexcept; // Перегрузка оператора присваивания с переносом
+	P();
+	P(const std::string);
+	P(const P&);
+	P(P&&) noexcept;
+	~P();
 
-	// Переопределение функций базового класса
-	void SetZero() override;               // Установка нуля
-	void SetOne() override;                // Установка единицы
-	bool IsZero() const override;          // Проверка на равенство с нулём
-	bool IsOne() const override;           // Проверка на равенство с единицей
-	std::string ToString() const override; // Преобразование P в std::string
-	void Normalize() override;             // Нормализация числа
+	P& operator=(const P&);
+	P& operator=(P&&) noexcept;
 
-	// Дружественные функции
+	void SetZero() override;
+	void SetOne() override;
+	bool IsZero() const override;
+	bool IsOne() const override;
+	std::string ToString() const override;
+	void Normalize() override;
+
 	friend P ADD_PP_P(const P&, const P&);   // P-1
 	friend P SUB_PP_P(const P&, const P&);   // P-2
 	friend P MUL_PQ_P(const P&, const Q&);   // P-3
@@ -42,9 +38,9 @@ public:
 	friend P GCF_PP_P(const P&, const P&);   // P-11
 	friend P DER_P_P(const P&);              // P-12
 	friend P NMR_P_P(const P&);              // P-13
+
 };
 
-// Модули
 P ADD_PP_P(const P&, const P&);   // P-1
 P SUB_PP_P(const P&, const P&);   // P-2
 P MUL_PQ_P(const P&, const Q&);   // P-3

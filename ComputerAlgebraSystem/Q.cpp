@@ -8,10 +8,10 @@ Q::Q() : numerator(), denominator() {
 }
 
 Q::Q(const std::string str) : Q() {
-	QParser recognizer(str);
-	bool status = recognizer.GetStatus();
+	QParser parser(str);
+	bool status = parser.GetStatus();
 	if (status) {
-		std::string tempStr = recognizer.GetPreparedString();
+		std::string tempStr = parser.GetPreparedString();
 		size_t pos = 0;
 		bool isDenom = false;
 		numerator.sign = tempStr[pos] == '+';

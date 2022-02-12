@@ -8,8 +8,8 @@ P::P() : coefficients(nullptr), power(0) {
 }
 
 P::P(const std::string str) : P() {
-	PParser recognizer(str);
-	bool status = recognizer.GetStatus();
+	PParser parser(str);
+	bool status = parser.GetStatus();
 	if (status) {
 		struct Part {
 			Q coefficient;
@@ -17,7 +17,7 @@ P::P(const std::string str) : P() {
 			Part() : coefficient(), power(0) {}
 		};
 		Part* parts = nullptr;
-		std::string tempStr = recognizer.GetPreparedString();
+		std::string tempStr = parser.GetPreparedString();
 		size_t pos = 0;
 		bool isEnd = false;
 		int maxPower = -1;

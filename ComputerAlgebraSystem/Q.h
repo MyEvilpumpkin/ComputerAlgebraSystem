@@ -1,34 +1,30 @@
 #pragma once
 #include "SpecialType.h"
 #include "Z.h"
-#include <string>
 
-// Описание натурального числа
 class Q : public SpecialType {
-	// Поля
-	Z numerator;   // Числитель (целое число)
-	N denominator; // Знаменатель (натуральное число)
+
+	Z numerator;
+	N denominator;
+
 public:
-	// Конструкторы и деструкторы
-	Q();                  // Конструктор по умолчанию
-	Q(const std::string); // Конструктор преобразования std::string в Q
-	Q(const Q&);          // Конструктор копирования
-	Q(Q&&) noexcept;      // Конструктор копирования с переносом
-	~Q();                 // Деструктор по умолчанию
 
-	// Перегрузка операторов
-	Q& operator = (const Q&);     // Перегрузка оператора присваивания
-	Q& operator = (Q&&) noexcept; // Перегрузка оператора присваивания с переносом
+	Q();
+	Q(const std::string);
+	Q(const Q&);
+	Q(Q&&) noexcept;
+	~Q();
 
-	// Переопределение функций базового класса
-	void SetZero() override;               // Установка нуля
-	void SetOne() override;                // Установка единицы
-	bool IsZero() const override;          // Проверка на равенство с нулём
-	bool IsOne() const override;           // Проверка на равенство с единицей
-	std::string ToString() const override; // Преобразование Q в std::string
-	void Normalize() override;             // Нормализация числа
+	Q& operator=(const Q&);
+	Q& operator=(Q&&) noexcept;
 
-	// Дружественные функции
+	void SetZero() override;
+	void SetOne() override;
+	bool IsZero() const override;
+	bool IsOne() const override;
+	std::string ToString() const override;
+	void Normalize() override;
+
 	friend Q RED_Q_Q(Q&);                  // Q-1
 	friend bool INT_Q_B(Q&);               // Q-2
 	friend Q TRANS_Z_Q(const Z&);          // Q-3
@@ -38,11 +34,10 @@ public:
 	friend Q MUL_QQ_Q(const Q&, const Q&); // Q-7
 	friend Q DIV_QQ_Q(const Q&, const Q&); // Q-8
 
-	// Дружественные классы
 	friend class P;
+
 };
 
-// Модули
 Q RED_Q_Q(Q&);                  // Q-1
 bool INT_Q_B(Q&);               // Q-2
 Q TRANS_Z_Q(const Z&);          // Q-3
